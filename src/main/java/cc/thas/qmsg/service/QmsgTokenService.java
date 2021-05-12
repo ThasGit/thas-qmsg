@@ -14,11 +14,22 @@ import java.util.Date;
 @Service
 public class QmsgTokenService {
 
+    private final JwtProperties jwtProperties;
+    private final Algorithm algorithm;
+    private final JWTVerifier verifier;
+
     @Autowired
-    private JwtProperties jwtProperties;
+    public QmsgTokenService(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+        // 线程安全的
+        algorithm = Algorithm.HMAC256(jwtProperties.getSecret());
+        verifier = JWT.require(algorithm)
+                .withIssuer(jwtProperties.getIssuer())
+                .build();
+    }
+
 
     public String generateToken(String audience) {
-        Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecret());
         Date now = new Date();
         return JWT.create()
                 // 主题
@@ -37,15 +48,6 @@ public class QmsgTokenService {
     }
 
     public DecodedJWT verify(String token) {
-        Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecret());
-        JWTVerifier verifier = JWT.require(algorithm)
-                .withIssuer(jwtProperties.getIssuer())
-                .build(); //Reusable verifier instance
-        DecodedJWT jwt = verifier.verify(token);
-        if (jwt.getExpiresAt().getTime() - System.currentTimeMillis() > 0) {
-            return jwt;
-        }
-        // throw Exception
-        return null;
+        return verifier.verify(token);
     }
 }

@@ -1,0 +1,9 @@
+FROM openjdk:8-jdk-slim
+
+MAINTAINER thas thascc1024@gmail.com
+
+COPY thas-qmsg*.jar app.jar
+
+ENV JAVA_OPTS=""
+
+ENTRYPOINT ["bash", "-c", "java $JAVA_OPTS -jar app.jar"]
