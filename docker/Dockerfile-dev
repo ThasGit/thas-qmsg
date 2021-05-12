@@ -2,7 +2,7 @@ FROM openjdk:8-jdk-slim
 
 MAINTAINER thas thascc1024@gmail.com
 
-COPY thas-qmsg*.jar app.jar
+COPY thas-qmsg.jar /app.jar
 
 ENV JAVA_OPTS=""
 
