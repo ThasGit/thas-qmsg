@@ -1,15 +1,3 @@
-server:
-  port: 8061
-
-thas:
-  jwt:
-    subject: thas qmsg token
-    secret: thas
-    issuer: 261911148
-    expire: 31536000
-
 spring:
-  bot:
-    plugin-list:
-      - cc.thas.qmsg.plugin.CommandPlugin
-      - cc.thas.qmsg.plugin.EchoPlugin
+  profiles:
+    active: core,@spring.profiles.active@

@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: core,test
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create_drop
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:thasqmsg
+    # schema: classpath:sql/schema-h2.sql
+    data: classpath:sql/test-data.sql
+    # embedded 只有h2内存数据库有效
+    initialization-mode: embedded
+
+thas:
+  jwt:
+    subject: thas qmsg token
+    secret: thas
+    issuer: 261911148
+    expire: 31536000

@@ -1,0 +1,20 @@
+server:
+  port: 8061
+
+thas:
+  jwt:
+    subject: thas qmsg token
+    secret: thas
+    issuer: 261911148
+    expire: 31536000
+
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/thasqmsg
+    data-username: thasqmsg
+    password: thasqmsg

@@ -1,0 +1,5 @@
+spring:
+  bot:
+    plugin-list:
+      - cc.thas.qmsg.plugin.QmsgTokenPlugin
+      - cc.thas.qmsg.plugin.EchoPlugin

@@ -1,0 +1,18 @@
+server:
+  port: 8061
+
+thas:
+  jwt:
+    subject: thas qmsg token
+    secret: thas
+    issuer: 261911148
+    expire: 31536000
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update # create 每次都会删除重建, update 只更新
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:~/h2/thasqmsg;USER=thasqmsg;PASSWORD=thasqmsg
